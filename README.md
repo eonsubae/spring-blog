@@ -10,6 +10,22 @@ DB: MySQL(Mybatis 매퍼 사용)
 
 Template Engine: Thmyeleaf
 
+### 구현된 화면
+
+![main](readme_img/main.png)
+
+![board](readme_img/board.png)
+
+![login](readme_img/login.png)
+
+![mypage](readme_img/mypage.png)
+
+![write](readme_img/board_write.png)
+
+![update](readme_img/board_update.png)
+
+![detail](readme_img/board_detail.png)
+
 ### 실행방법
 
 src/main/resources/application.properties 파일을 실행
