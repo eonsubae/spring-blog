@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" th:href="@{/css/basic.css}" />
+  <link rel="stylesheet" th:href="@{/css/header.css}" />
+  <link rel="stylesheet" th:href="@{/css/login.css}" />
+</head>
+
+<body>
+  <header class="main-header">
+    <h1 class="main-title"><a href="/">ESB</a></h1>
+    <nav class="content-navigation">
+      <ul class="content-navigation-container">
+        <li class="content-navigation-content"><a href="/">Home</a></li>
+        <li class="content-navigation-content">
+          <a href="/boards">Board</a>
+        </li>
+        <li class="content-navigation-content">
+          <a href="/account">My page</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- <span sec:authentication="name">SomeName</span><br />
+		<span sec:authentication="principal">PrincipalString</span><br />
+		<span sec:authorize="hasRole('ROLE_USER')">YES</span><br />
+		<span sec:authorize="hasRole('ROLE_ADMIN')">YES</span> -->
+    <nav class="auth-navigation" sec:authorize="isAuthenticated()">
+      <a class="logout" href="/logout">Logout</a>
+    </nav>
+    <nav class="auth-navigation" sec:authorize="!isAuthenticated()">
+      <a class="signup" href="/signup">Sign up</a>
+      <a class="signin" href="/login">Sign in</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <form method="POST">
+        <div class="input-container">
+          <label>E-mail : </label>
+          <input class="email-input" type="text" name="username" autofocus />
+        </div>
+        <div class="input-container">
+          <label>Password : </label>
+          <input class="pw-input" type="password" name="password" />
+        </div>
+        <div class="input-container">
+          <button class="submit-btn" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+
+</html>

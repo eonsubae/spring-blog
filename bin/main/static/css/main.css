@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* This defines what 1rem is(1rem = 10px) rem */
+    /* 100% => 1rem = 16px; 16 / 62.5% => 10px : 1rem */
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+.main-header {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+.main-title {
+    margin-left: 2rem;
+    font-size: 2.5rem;
+}
+
+.main-title a {
+    color: black;
+    text-decoration: none;
+}
+
+.content-navigation {
+    margin-left: 1rem;
+}
+
+.content-navigation-container {
+    display: flex;
+    margin-left: 1rem;
+}
+
+.content-navigation-content {
+    width: 10rem;
+    text-align: center;
+    border-left: 1px solid silver;
+    padding: .5rem;
+    list-style: none;
+}
+
+.content-navigation-content a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.auth-navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.auth-navigation a {
+    text-decoration: none;
+    color: black;
+    margin-right: 5rem;
+}
+
+.logout {
+    font-size: 1.7rem;
+}
+
+.signup {
+    font-size: 1.5rem;
+}
+
+.signin {
+    font-size: 1.7rem;
+}
+
+.layout-blank {
+    height: 15rem;
+    background-color: #1E90FF;
+    background: linear-gradient(to left, #83EAF1, #63A4FF);
+}
+
+.main {
+    width: 80%;
+    height: 55rem;
+    margin: 0 auto;
+}
+
+.recent-article-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.recent-article {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #708090;
+    width: 30%;
+    height: 25rem;
+    margin-top: 1.5rem;
+}
+
+.board-header {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+.board-category {
+    margin: 1rem 0 0 1rem;
+    font-size: 1.5rem;
+}
+
+.board-title {
+    margin-top: 1rem;
+    width: 90%;
+    height: 50%;
+    font-size: 2.3rem;
+    align-self: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.board-title a {
+    text-decoration: none;
+    color: black;
+}
+
+.board-content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+}
+
+.board-content {
+    width: 90%;
+    height: 7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+.board-content a {
+    text-decoration: none;
+    color: black;
+}
+
+.board-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10%;
+    font-size: 1.5rem;
+}

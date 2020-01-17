@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ESB - Board</title>
+	<link rel="stylesheet" th:href="@{/css/basic.css}" />
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+	<link rel="stylesheet" th:href="@{/css/boardList.css}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+<body>
+	<header class="main-header">
+		<h1 class="main-title"><a href="/">ESB</a></h1>
+		<nav class="content-navigation">
+			<ul class="content-navigation-container">
+				<li class="content-navigation-content"><a href="/">Home</a></li>
+				<li class="content-navigation-content"><a href="/boards">Board</a></li>
+				<li class="content-navigation-content"><a href="/account">My page</a></li>
+			</ul>
+		</nav>
+		<nav class="auth-navigation" sec:authorize="isAuthenticated()">
+			<a class="logout" href="/logout">Logout</a>
+		</nav>
+		<nav class="auth-navigation" sec:authorize="!isAuthenticated()">
+			<a class="signup" href="/signup">Sign up</a>
+			<a class="signin" href="/login">Sign in</a>
+		</nav>
+	</header>
+	<div class="container">
+		<h2 class="board-list-title">게시글 목록</h2>
+		<table class="board-list">
+			<colgroup>
+				<col width="15%" />
+				<col width="*" />
+				<col width="15%" />
+				<col width="20%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">글번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">조회수</th>
+					<th scope="col">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="post-container" th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+	        <td class="post-idx" th:text="${list.boardIdx}"></td>
+	        <td class="post-title-container">
+						<a class="post-title"
+						   href="/boards/" 
+	             th:attrappend="href=${list.boardIdx}" 
+	             th:text="${list.title}">
+	          </a>
+	        </td>
+	        <td class="post-hit-count" th:text="${list.hitCnt}"></td>
+	        <td class="post-created-time" th:text="${list.createdDatetime}"></td>
+	      </tr> 
+	      <tr th:unless="${#lists.size(list)} > 0">
+	        	<td colspan="4">조회된 결과가 없습니다.</td>
+	      </tr>
+	    </tbody>
+	    </table>
+			<div class="board-bottom-container">
+				<div class="pagination-container">
+					<div class="double-left-container icon-container">
+						<a class="double-left" href="/boards?pageNum=1">
+							<i class="fas fa-angle-double-left double-left"></i>
+						</a>
+					</div>
+				  <div class="single-left-container icon-container">
+						<a class="single-left" href="/boards?pageNum=">
+					  	<i class="fas fa-angle-left single-left"></i>
+						</a>
+					</div>
+					<div class="page-num-container">
+						<a class="page-num" href="/boards?pageNum=" th:attrappend="href=${pageNum}" th:text="${pageNum}"></a>
+					</div>
+				  <div class="single-right-container icon-container">
+						<a class="single-right" href="/boards?pageNum=">
+							<i class="fas fa-angle-right single-right-icon"></i>
+						</a>
+					</div>
+				  <div class="double-right-container icon-container">
+						<a class="double-right" href="/boards?pageNum=" th:attrappend="href=${totalPageNum}">
+							<i class="fas fa-angle-double-right double-right-icon"></i>
+						</a>
+				  </div>
+				</div>
+				<a href="/boards/editor" class="writing-btn">Write a new post</a>
+			</div>
+		</div>
+		
+		<script>
+		  (() => window.addEventListener('DOMContentLoaded', _ => {
+				// icons
+				const singleLeftArrow = document.querySelector('.single-left');
+				const singleLeftArrowHrefValue = singleLeftArrow.getAttribute('href');
+
+				const singleRightArrow = document.querySelector('.single-right');
+				const singleRightArrowHrefValue = singleRightArrow.getAttribute('href');
+				const doubleRightArrow = document.querySelector('.double-right');
+
+        // page numbers
+				const pageNum = getQueryVariable('pageNum');
+        let totalPageNum = doubleRightArrow.getAttribute('href');
+				totalPageNum = totalPageNum.split('=')[1];
+
+				// single left
+				/*
+          현재 pageNum이 1이면 href의 pageNum 쿼리스트링 값은 1이 된다
+          현재 pageNum이 1이 아니면 href의 pageNum 쿼리스트링 값은 pageNum - 1이 된다
+				*/
+				if (pageNum == 1) {
+					singleLeftArrow.setAttribute('href', `${singleLeftArrowHrefValue}1`);
+				} else {
+					singleLeftArrow.setAttribute('href', `${singleLeftArrowHrefValue}${+pageNum - 1}`);
+				}
+
+				// single right
+				/*
+          현재 pageNum이 totalPageNum이면 href의 pageNum 쿼리스트링 값은 totalPageNum이 된다
+          현재 pageNum이 totalPageNum이 아니면 href의 pageNum 쿼리스트링 값은 pageNum + 1이 된다
+				*/
+				if (pageNum == totalPageNum) {
+					singleRightArrow.setAttribute('href', `${singleLeftArrowHrefValue}${totalPageNum}`);
+				} else {
+					singleRightArrow.setAttribute('href', `${singleLeftArrowHrefValue}${pageNum ? (+pageNum + 1) : 2}`);
+				}
+
+      }))();
+
+			function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) == variable) {
+                return decodeURIComponent(pair[1]);
+            }
+				}
+      };
+		</script>
+</body>
+</html>

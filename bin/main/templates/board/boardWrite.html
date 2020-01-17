@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Writing a new Post</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+	</script>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.min.js"></script>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/basic.css}" />
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+</head>
+
+<body>
+	<header class="main-header">
+		<h1 class="main-title"><a href="/">ESB</a></h1>
+		<nav class="content-navigation">
+			<ul class="content-navigation-container">
+				<li class="content-navigation-content"><a href="/">Home</a></li>
+				<li class="content-navigation-content"><a href="/boards">Board</a></li>
+				<li class="content-navigation-content"><a href="/account">My page</a></li>
+			</ul>
+		</nav>
+		<nav class="auth-navigation" sec:authorize="isAuthenticated()">
+			<a class="logout" href="/logout">Logout</a>
+		</nav>
+		<nav class="auth-navigation" sec:authorize="!isAuthenticated()">
+			<a class="signup" href="/signup">Sign up</a>
+			<a class="signin" href="/login">Sign in</a>
+		</nav>
+	</header>
+	<div class="container">
+		<h2>게시글 등록</h2>
+		<form id="frm" name="frm" method="post" action="/boards">
+			<table class="board_detail">
+				<tr>
+					<td>제목</td>
+					<td><input type="text" id="title" name="title" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><textarea id="summernote" name="contents"></textarea>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" id="submit" value="저장" class="btn">
+		</form>
+	</div>
+	<script>
+		(() => {
+			window.addEventListener('DOMContentLoaded', (event) => {
+				getSummernote();
+			});
+		})();
+
+		function getSummernote() {
+			$(document).ready(function () {
+				$('#summernote').summernote({
+					height: 400,
+					tabsize: 2,
+					toolbar: [
+						['style', ['style']],
+						['font', ['bold', 'underline', 'clear']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						['table', ['table']],
+						['insert', ['link', 'picture', 'video']],
+						['view', ['fullscreen', 'codeview', 'help']]
+					]
+				});
+			});
+		}
+	</script>
+</body>
+
+</html>

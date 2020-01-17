@@ -1,0 +1,98 @@
+tr {
+  height: 4rem;
+}
+
+.container {
+  max-width: 102.4rem;
+  margin: 3rem auto;
+}
+
+.board-list-title {
+  font-size: 2rem;
+}
+
+.board-list {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.post-idx {
+  font-size: 1.5rem;
+}
+
+.post-title {
+  display: inline-block;
+  width: 50rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+  color: black;
+}
+
+.post-hit-count {
+  font-size: 1.7rem;
+}
+
+.post-created-time {
+  font-size: 1.8rem;
+}
+
+.board-bottom-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3rem;
+  padding-right: 3rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+}
+
+.icon-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.icon-container a i {
+  font-size: 2rem;
+}
+
+.page-num-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+}
+
+.page-num {
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
+}
+
+.writing-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18%;
+  height: 5rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #464545;
+}

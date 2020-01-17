@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>게시글 상세 화면</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/basic.css}" />
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
+</head>
+
+<body>
+	<header class="main-header">
+		<h1 class="main-title"><a href="/">ESB</a></h1>
+		<nav class="content-navigation">
+			<ul class="content-navigation-container">
+				<li class="content-navigation-content"><a href="/">Home</a></li>
+				<li class="content-navigation-content"><a href="/boards">Board</a></li>
+				<li class="content-navigation-content"><a href="/account">My page</a></li>
+			</ul>
+		</nav>
+		<nav class="auth-navigation" sec:authorize="isAuthenticated()">
+			<a class="logout" href="/logout">Logout</a>
+		</nav>
+		<nav class="auth-navigation" sec:authorize="!isAuthenticated()">
+			<a class="signup" href="/signup">Sign up</a>
+			<a class="signin" href="/login">Sign in</a>
+		</nav>
+	</header>
+	<div class="container">
+		<h2>게시글 상세 화면</h2>
+		<form id="frm" method="post">
+			<table class="board_detail">
+				<colgroup>
+					<col width="15%" />
+					<col width="35%" />
+					<col width="15%" />
+					<col width="35%" />
+				</colgroup>
+				<caption>게시글 상세내용</caption>
+				<tbody>
+					<tr>
+						<th scope="row">글 번호</th>
+						<td th:text="${board.boardIdx}"></td>
+						<th scope="row">조회수</th>
+						<td th:text="${board.hitCnt}"></td>
+					</tr>
+					<tr>
+						<th scope="row">작성자</th>
+						<td th:text="${board.creatorId}"></td>
+						<th scope="row">작성일</th>
+						<td th:text="${board.createdDatetime}"></td>
+					</tr>
+					<tr>
+						<th scope="row">제목</th>
+						<td colspan="3">
+							<h1 id="title" name="title" th:text="${board.title}"></h1>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" class="view_text">
+							<div title="내용" id="contents" name="contents" th:utext="${board.contents}"></div>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" id="boardIdx" name="boardIdx" th:value="${board.boardIdx }">
+		</form>
+
+		<a href="/boards" id="list" class="btn">목록으로</a>
+		<a href="/boards/editor/" th:attrappend="href=${board.boardIdx}" id="edit" class="btn">수정하기</a>
+		<form action="/boards/remover/" th:attrappend="action=${board.boardIdx}" method="post">
+			<input type="submit" id="delete" class="btn" value="삭제하기" />
+		</form>
+	</div>
+
+</body>
+
+</html>

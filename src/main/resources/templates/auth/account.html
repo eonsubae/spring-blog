@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" th:href="@{/css/account.css}" />
+</head>
+
+<body>
+  <header class="main-header">
+    <h1 class="main-title"><a href="/">ESB</a></h1>
+    <nav class="content-navigation">
+      <ul class="content-navigation-container">
+        <li class="content-navigation-content"><a href="/">Home</a></li>
+        <li class="content-navigation-content"><a href="/boards">Board</a></li>
+        <li class="content-navigation-content"><a href="/account">My page</a></li>
+      </ul>
+    </nav>
+    <nav class="auth-navigation" sec:authorize="isAuthenticated()">
+      <a class="logout" href="/logout">Logout</a>
+    </nav>
+    <nav class="auth-navigation" sec:authorize="!isAuthenticated()">
+      <a class="signup" href="/signup">Sign up</a>
+      <a class="signin" href="/login">Sign in</a>
+    </nav>
+  </header>
+  <main class="container">
+    <div class="user-info">
+      <header class="user-info__header"></header>
+      <section class="user-info__name-container">
+        <h3 class="user-info__name" th:text="${user.name}"></h3>
+      </section>
+      <section class="user-info__email-container">
+        <p class="user-info__email" th:text="${user.id}"></p>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>ESB's blog</title>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
+</head>
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+
+<body>
+	<header class="main-header">
+		<h1 class="main-title"><a href="/">ESB</a></h1>
+		<nav class="content-navigation">
+			<ul class="content-navigation-container">
+				<li class="content-navigation-content"><a href="/">Home</a></li>
+				<li class="content-navigation-content">
+					<a href="/boards">Board</a>
+				</li>
+				<li class="content-navigation-content">
+					<a href="/account">My page</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- <span sec:authentication="name">SomeName</span><br />
+		<span sec:authentication="principal">PrincipalString</span><br />
+		<span sec:authorize="hasRole('ROLE_USER')">YES</span><br />
+		<span sec:authorize="hasRole('ROLE_ADMIN')">YES</span> -->
+		<nav class="auth-navigation" sec:authorize="isAuthenticated()">
+			<a class="logout" href="/logout">Logout</a>
+		</nav>
+		<nav class="auth-navigation" sec:authorize="!isAuthenticated()">
+			<a class="signup" href="/signup">Sign up</a>
+			<a class="signin" href="/login">Sign in</a>
+		</nav>
+	</header>
+	<div class="layout-blank"></div>
+
+	<main class="main">
+		<section class="recent-article-container">
+			<article class="recent-article" th:each="board : ${boards}">
+				<header class="board-header">
+					<p class="board-category">Category</p>
+					<h1 class="board-title">
+						<a href="/boards/" th:attrappend="href=${board.boardIdx}" th:text="${board.title}"></a>
+					</h1>
+				</header>
+				<div class="board-content-container">
+					<p class="board-content">
+						<a href="/boards/" th:attrappend="href=${board.boardIdx}" th:text="${board.contents}"></a>
+					</p>
+				</div>
+				<div class="board-info">
+					<p>Writer</p>
+					<p th:text="${board.createdDatetime}"></p>
+				</div>
+			</article>
+		</section>
+	</main>
+</body>
+
+</html>
