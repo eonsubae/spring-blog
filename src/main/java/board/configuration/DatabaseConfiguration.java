@@ -15,6 +15,14 @@ import org.springframework.context.annotation.PropertySource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+/**
+ * データベースを設定するクラス
+ * コネクションプールでHikariCPを使い
+ * mybatis mapperの経路を指定
+ * 
+ * @author Eonsu Bae(2020-01-28) 
+ * @version 1.0 */
+
 @Configuration
 @PropertySource("classpath:/application.properties")
 public class DatabaseConfiguration {

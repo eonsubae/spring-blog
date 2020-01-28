@@ -1,5 +1,12 @@
 package board.board.dto;
 
+/*
+ * member tableªÎï×ÜÃªòJava codeªÇïÒëùª·ª¿DTOªÎ«¯«é«¹
+ * 
+ * @author Eonsu Bae(2020-01-28) 
+ * @version 1.0
+ */
+
 public class MemberDto {
 
 	private String id;

@@ -95,7 +95,7 @@
 		
 		<script>
 		  (() => window.addEventListener('DOMContentLoaded', _ => {
-				// icons
+				// アイコンのdomをcashing
 				const singleLeftArrow = document.querySelector('.single-left');
 				const singleLeftArrowHrefValue = singleLeftArrow.getAttribute('href');
 
@@ -103,15 +103,15 @@
 				const singleRightArrowHrefValue = singleRightArrow.getAttribute('href');
 				const doubleRightArrow = document.querySelector('.double-right');
 
-        // page numbers
+                // ページの数字をcashing
 				const pageNum = getQueryVariable('pageNum');
-        let totalPageNum = doubleRightArrow.getAttribute('href');
+                let totalPageNum = doubleRightArrow.getAttribute('href');
 				totalPageNum = totalPageNum.split('=')[1];
 
 				// single left
 				/*
-          현재 pageNum이 1이면 href의 pageNum 쿼리스트링 값은 1이 된다
-          현재 pageNum이 1이 아니면 href의 pageNum 쿼리스트링 값은 pageNum - 1이 된다
+          　　　　　　　現在のpageNumが1ならば、hrefのpageNumというquery stringのバリアブルは1になる
+          　　　　　　　現在のpageNumが1ではなければhrefのpageNumというquery stringのバリアブルはpageNum - 1になる
 				*/
 				if (pageNum == 1) {
 					singleLeftArrow.setAttribute('href', `${singleLeftArrowHrefValue}1`);
@@ -121,8 +121,8 @@
 
 				// single right
 				/*
-          현재 pageNum이 totalPageNum이면 href의 pageNum 쿼리스트링 값은 totalPageNum이 된다
-          현재 pageNum이 totalPageNum이 아니면 href의 pageNum 쿼리스트링 값은 pageNum + 1이 된다
+          　　　　　　　現在のpageNumがtotalPageNumならばhrefのpageNumというquery stringのバリアブルはtotalPageNumになる
+          　　　　　　　現在のpageNumがtotalPageNumではなければhrefのpageNumというquery stringのバリアブルはpageNum + 1になる
 				*/
 				if (pageNum == totalPageNum) {
 					singleRightArrow.setAttribute('href', `${singleLeftArrowHrefValue}${totalPageNum}`);
@@ -132,6 +132,7 @@
 
       }))();
 
+		// query stringを持ってくるファンクション
 			function getQueryVariable(variable) {
         var query = window.location.search.substring(1);
         var vars = query.split('&');

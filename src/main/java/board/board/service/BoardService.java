@@ -2,6 +2,13 @@ package board.board.service;
 
 import java.util.List;
 
+/**
+ * boardªÎserviceªòê«úşªòïÒëù
+ * 
+ * @author Eonsu Bae(2020-01-28) 
+ * @version 1.0
+ */
+
 import board.board.dto.BoardDto;
 
 public interface BoardService {

@@ -7,6 +7,14 @@ import org.apache.ibatis.annotations.Param;
 
 import board.board.dto.BoardDto;
 
+/**
+ * boardに対するMybatis mapperのクラス
+ * ビジネスロジックはserviceで処理すべきだ
+ * 
+ * @author Eonsu Bae(2020-01-28) 
+ * @version 1.0
+ */
+
 @Mapper
 public interface BoardMapper {
 	int getBoardsCount() throws Exception;

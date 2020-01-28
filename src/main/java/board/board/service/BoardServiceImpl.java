@@ -8,6 +8,13 @@ import org.springframework.stereotype.Service;
 import board.board.dto.BoardDto;
 import board.board.mapper.BoardMapper;
 
+/**
+ * boardに関するビジネスロジックとトランザクションを作成するクラス
+ * 
+ * @author Eonsu Bae(2020-01-28) 
+ * @version 1.0
+ */
+
 @Service
 public class BoardServiceImpl implements BoardService {
 

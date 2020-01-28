@@ -6,6 +6,13 @@ import org.springframework.stereotype.Service;
 import board.board.dto.MemberDto;
 import board.board.mapper.MemberMapper;
 
+/**
+ * boardに関するビジネスロジックとトランザクションを作成するクラス
+ * 
+ * @author Eonsu Bae(2020-01-28) 
+ * @version 1.0
+ */
+
 @Service
 public class MemberServiceImpl implements MemberService {
 	

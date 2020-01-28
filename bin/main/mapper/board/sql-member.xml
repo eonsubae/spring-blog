@@ -2,13 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
+<!-- 
+  member tableに関するSQLを実際に作成
+
+  @author(最後の修正者) Eonsu Bae(2020-01-28)
+  @version 1.0
+ -->  
+ 
 <mapper namespace="board.board.mapper.MemberMapper">
+   
+  <!-- usernameでユーザを持ってくる -->
   <select id="findById" parameterType="String" resultType="board.board.dto.MemberDto">
     <![CDATA[
       SELECT * FROM MEMBER WHERE id=#{username}
     ]]>
   </select>
   
+  <!-- 新しいユーザを作る -->
   <insert id="insertMember" parameterType="board.board.dto.MemberDto">
     <![CDATA[
       INSERT INTO MEMBER

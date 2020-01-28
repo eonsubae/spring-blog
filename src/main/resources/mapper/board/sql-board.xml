@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
+<!-- 
+  board tableに関するSQLを実際に作成
+
+  @author(最後の修正者) Eonsu Bae(2020-01-28)
+  @version 1.0
+ -->    
+ 
 <mapper namespace="board.board.mapper.BoardMapper">
+
+  <!-- board tableにあるrowの総合の数を持ってくる -->
   <select id="getBoardsCount" resultType="int">
     <![CDATA[
         SELECT
@@ -12,6 +21,7 @@
     ]]>
   </select>
   
+  <!-- paginationに関係なく全てのboardを持ってくる -->
   <select id="selectBoardList" resultType="board.board.dto.BoardDto">
     <![CDATA[
         SELECT
@@ -27,6 +37,7 @@
     ]]>
   </select>
   
+  <!-- paginationを適用してのboardを持ってくる -->
   <select id="selectBoardListByPagination" resultType="board.board.dto.BoardDto">
     <![CDATA[
         SELECT
@@ -44,6 +55,7 @@
     ]]>
   </select>
   
+  <!-- 初めのページに見せる最近のコンテンツを持ってくる -->
   <select id="selectBoardLimit" parameterType="int" resultType="board.board.dto.BoardDto">
     <![CDATA[
         SELECT
@@ -61,6 +73,7 @@
     ]]>
   </select>
   
+  <!-- 一個のboardを持ってくる -->
   <select id="selectBoardOne" parameterType="int" resultType="board.board.dto.BoardDto">
     <![CDATA[
         SELECT
@@ -76,6 +89,7 @@
     ]]>
   </select>
   
+  <!-- 新しいboardを作る -->
   <insert id="insertBoard" parameterType="board.board.dto.BoardDto">
     <![CDATA[
       INSERT INTO t_board
@@ -95,6 +109,7 @@
     ]]>
   </insert>
   
+  <!-- 既存のboardを修正する -->
   <update id="updateBoard" parameterType="board.board.dto.BoardDto">
     <![CDATA[
       UPDATE 
@@ -108,6 +123,7 @@
     ]]>
   </update>
   
+  <!-- 既存のboardを削除する -->
   <delete id="deleteBoard" parameterType="int">
     <![CDATA[
       DELETE FROM t_board
@@ -116,6 +132,7 @@
     ]]>
   </delete>
   
+  <!-- View countを追加する -->
   <update id="increaseHitCnt" parameterType="int">
     <![CDATA[
       UPDATE t_board 
